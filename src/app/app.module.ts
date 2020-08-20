@@ -10,7 +10,7 @@ import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     NgxMapboxGLModule,
     AppRoutingModule
   ],
