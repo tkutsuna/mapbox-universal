@@ -6,7 +6,8 @@ import { join } from 'path';
 
 import { existsSync, readFileSync } from 'fs';
 
-const domino = require('domino');
+import * as domino from 'domino';
+
 const template = readFileSync(join(__dirname, '../browser', 'index.html')).toString();
 const win = domino.createWindow(template);
 
