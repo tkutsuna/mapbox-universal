@@ -4,9 +4,20 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
 
+import { existsSync, readFileSync } from 'fs';
+
+const domino = require('domino');
+const template = readFileSync(join(__dirname, '../browser', 'index.html')).toString();
+const win = domino.createWindow(template);
+
+(global as any).window = win;
+window.URL = { createObjectURL() {} } as any;
+
+class Blob {}
+(global as any).Blob = Blob;
+
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
